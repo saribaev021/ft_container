@@ -1,0 +1,6 @@
+/Users/ndreadno/ft_container/cmake-build-debug/CMakeFiles/Test.dir
+/Users/ndreadno/ft_container/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/ndreadno/ft_container/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/ndreadno/ft_container/cmake-build-debug/CMakeFiles/vector.dir
+/Users/ndreadno/ft_container/cmake-build-debug/CMakeFiles/stack.dir
+/Users/ndreadno/ft_container/cmake-build-debug/CMakeFiles/list.dir
