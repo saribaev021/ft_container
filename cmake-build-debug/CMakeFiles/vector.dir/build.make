@@ -77,27 +77,27 @@ include CMakeFiles/vector.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/vector.dir/flags.make
 
-CMakeFiles/vector.dir/vector/main.cpp.o: CMakeFiles/vector.dir/flags.make
-CMakeFiles/vector.dir/vector/main.cpp.o: ../vector/main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ndreadno/ft_container/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/vector.dir/vector/main.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/vector.dir/vector/main.cpp.o -c /Users/ndreadno/ft_container/vector/main.cpp
+CMakeFiles/vector.dir/Vector/main.cpp.o: CMakeFiles/vector.dir/flags.make
+CMakeFiles/vector.dir/Vector/main.cpp.o: ../Vector/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/ndreadno/ft_container/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/vector.dir/Vector/main.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/vector.dir/Vector/main.cpp.o -c /Users/ndreadno/ft_container/Vector/main.cpp
 
-CMakeFiles/vector.dir/vector/main.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/vector.dir/vector/main.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/ndreadno/ft_container/vector/main.cpp > CMakeFiles/vector.dir/vector/main.cpp.i
+CMakeFiles/vector.dir/Vector/main.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/vector.dir/Vector/main.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/ndreadno/ft_container/Vector/main.cpp > CMakeFiles/vector.dir/Vector/main.cpp.i
 
-CMakeFiles/vector.dir/vector/main.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/vector.dir/vector/main.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ndreadno/ft_container/vector/main.cpp -o CMakeFiles/vector.dir/vector/main.cpp.s
+CMakeFiles/vector.dir/Vector/main.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/vector.dir/Vector/main.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/ndreadno/ft_container/Vector/main.cpp -o CMakeFiles/vector.dir/Vector/main.cpp.s
 
 # Object files for target vector
 vector_OBJECTS = \
-"CMakeFiles/vector.dir/vector/main.cpp.o"
+"CMakeFiles/vector.dir/Vector/main.cpp.o"
 
 # External object files for target vector
 vector_EXTERNAL_OBJECTS =
 
-vector: CMakeFiles/vector.dir/vector/main.cpp.o
+vector: CMakeFiles/vector.dir/Vector/main.cpp.o
 vector: CMakeFiles/vector.dir/build.make
 vector: CMakeFiles/vector.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/ndreadno/ft_container/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable vector"

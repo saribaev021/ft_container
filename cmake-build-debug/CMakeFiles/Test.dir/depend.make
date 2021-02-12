@@ -4,6 +4,7 @@
 CMakeFiles/Test.dir/Test/main.cpp.o: ../Iterator/Iterator.hpp
 CMakeFiles/Test.dir/Test/main.cpp.o: ../List/Node.hpp
 CMakeFiles/Test.dir/Test/main.cpp.o: ../List/list.hpp
+CMakeFiles/Test.dir/Test/main.cpp.o: ../Map/Tree.hpp
 CMakeFiles/Test.dir/Test/main.cpp.o: ../Test/main.cpp
 CMakeFiles/Test.dir/Test/main.cpp.o: ../Vector/vector.hpp
 

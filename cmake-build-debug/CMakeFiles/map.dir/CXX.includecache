@@ -1,0 +1,40 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/ndreadno/ft_container/Iterator/Iterator.hpp
+iostream
+-
+../List/Node.hpp
+/Users/ndreadno/ft_container/List/Node.hpp
+../Map/Tree.hpp
+/Users/ndreadno/ft_container/Map/Tree.hpp
+
+/Users/ndreadno/ft_container/List/Node.hpp
+iostream
+-
+
+/Users/ndreadno/ft_container/Map/Tree.hpp
+
+/Users/ndreadno/ft_container/Map/main.cpp
+map.hpp
+/Users/ndreadno/ft_container/Map/map.hpp
+fstream
+-
+
+/Users/ndreadno/ft_container/Map/map.hpp
+Tree.hpp
+/Users/ndreadno/ft_container/Map/Tree.hpp
+../Iterator/Iterator.hpp
+/Users/ndreadno/ft_container/Iterator/Iterator.hpp
+cstddef
+-
+limits
+-
+iostream
+-
+

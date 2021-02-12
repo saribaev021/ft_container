@@ -4,7 +4,9 @@
 
 #ifndef ITERATOR_HPP
 #define ITERATOR_HPP
+#include <iostream>
 #include "../List/Node.hpp"
+#include "../Map/Tree.hpp"
 namespace ft{
     struct iterator_tag{};
     template<typename T>
@@ -288,6 +290,154 @@ namespace ft{
     bool operator>  (const reverse_iterator<Iterator>& lhs, const reverse_iterator<Iterator>& rhs){return lhs.base() < rhs.base();}
     template <class Iterator>
     bool operator>=  (const reverse_iterator<Iterator>& lhs, const reverse_iterator<Iterator>& rhs){return lhs.base() <= rhs.base();}
+    template <typename K, typename V>
+    class MapIterator{
+    public:
+        typedef std::pair<K, V> value_type;
+        typedef iterator_tag iterator_category;
+        typedef value_type *pointer;
+        typedef value_type &reference;
+        typedef std::ptrdiff_t difference_type;
+    protected:
+        tree<K, V> *ptr_node;
+        std::pair<K, V>p;
+    public:
+        MapIterator(): ptr_node(nullptr),p(){}
+        MapIterator(tree<K, V> *node): ptr_node(node),p(node->key, node->vallue) {}
+        MapIterator(const value_type &val): ptr_node(val.first, val.second),p(val) {}
+        MapIterator(const  MapIterator &other):ptr_node(other.ptr_node), p(other.p.first, other.p.second) {}
+        virtual ~ MapIterator() {}
 
+        MapIterator &operator=(const  MapIterator &other) {
+            this->ptr_node = other.ptr_node;
+            return *this;
+        }
+        MapIterator operator++(int)//postfix i++
+        {
+            MapIterator tmp = *this;
+            if (ptr_node->right->type) {
+                if (ptr_node->right->left->type && ptr_node->right->left->key > ptr_node->key) {
+                    ptr_node = ptr_node->right;
+                    while (ptr_node->left->type)
+                        ptr_node = ptr_node->left;
+                }else
+                    ptr_node = this->ptr_node->right;
+            }
+            else if (ptr_node->parent->type && ptr_node->parent->key > ptr_node->key)
+                ptr_node = this->ptr_node->parent;
+            else if (ptr_node->parent->key < ptr_node->key){
+                while (ptr_node->parent->type && ptr_node->parent->key < ptr_node->key)
+                    ptr_node = ptr_node->parent;
+            }
+            return (tmp);
+        }
+        MapIterator &operator--(int)//postfix i--
+        {
+            MapIterator tmp = *this;
+            if (ptr_node->left->type){
+                if (ptr_node->left->right->type && ptr_node->left->right->key < ptr_node->key) {
+                    ptr_node = ptr_node->left;
+                    while (ptr_node->right->type)
+                        ptr_node = ptr_node->right;
+                } else
+                    ptr_node = this->ptr_node->left;
+            }
+            else if (ptr_node->parent->type && ptr_node->parent->key < ptr_node->key)
+                ptr_node = this->ptr_node->parent;
+            else if (ptr_node->parent->key > ptr_node->key) {
+                while (ptr_node->parent->type && ptr_node->parent->key > ptr_node->key)
+                    ptr_node = ptr_node->parent;
+            }
+            return (tmp);
+        }
+        MapIterator &operator++()//prefix ++i
+        {
+            if (ptr_node->right->type) {
+                if (ptr_node->right->type == 1 && ptr_node->right->left->type == 1 && ptr_node->right->left->key > ptr_node->key) {
+                    ptr_node = ptr_node->right;
+                    while (ptr_node->left->type)
+                        ptr_node = ptr_node->left;
+                }else
+                    ptr_node = this->ptr_node->right;
+            }
+            else if (ptr_node->parent->type && ptr_node->parent->key > ptr_node->key)
+                ptr_node = this->ptr_node->parent;
+            else if (ptr_node->parent->key < ptr_node->key){
+                while (ptr_node->parent->type && ptr_node->parent->key < ptr_node->key)
+                    ptr_node = ptr_node->parent;
+            }
+            return (*this);
+        }
+        MapIterator &operator--()//prefix --i
+        {
+            if (ptr_node->left->type){
+                if (ptr_node->left->right->type && ptr_node->left->right->key < ptr_node->key) {
+                    ptr_node = ptr_node->left;
+                    while (ptr_node->right->type)
+                        ptr_node = ptr_node->right;
+                } else
+                    ptr_node = this->ptr_node->left;
+            }
+            else if (ptr_node->parent->type && ptr_node->parent->key < ptr_node->key)
+                ptr_node = this->ptr_node->parent;
+            else if (ptr_node->parent->key > ptr_node->key) {
+                while (ptr_node->parent->type && ptr_node->parent->key > ptr_node->key)
+                    ptr_node = ptr_node->parent;
+            }
+            return (*this);
+        }
+        bool operator!=(const  MapIterator &other) const {
+            if (this->ptr_node != other.ptr_node)
+                return (true);
+            return (false);
+        }
+        bool operator==(const  MapIterator &other) const {
+            if (this->ptr_node == other.ptr_node)
+                return (true);
+            return (false);
+        }
+    };
+    template <typename K, typename V>
+    class SimpleMapIterator : public MapIterator<K, V>{
+    public:
+        typedef std::pair<K, V> value_type;
+        typedef iterator_tag iterator_category;
+        typedef value_type *pointer;
+        typedef value_type &reference;
+        typedef std::ptrdiff_t difference_type;
+        SimpleMapIterator(tree<K, V> *node): MapIterator<K, V>(node){}
+        SimpleMapIterator(const value_type &val): MapIterator<K, V>(val){}
+        virtual ~SimpleMapIterator() {}
+        SimpleMapIterator(const MapIterator<K, V> &other) : MapIterator<K, V>(other) {}
+        SimpleMapIterator() :MapIterator<K, V>(){}
+        pointer operator->() {
+            return (&operator*());
+        }
+        reference operator*() {
+            this->p.first = this->ptr_node->key;
+            this->p.second = this->ptr_node->vallue;
+            return this->p;
+        }
+    };
+    template <typename K, typename V>
+    class ConstMapIterator : public MapIterator<K, V>{
+    public:
+        typedef std::pair<K, V> value_type;
+        typedef iterator_tag iterator_category;
+        typedef value_type const *const_pointer;
+        typedef value_type const &const_reference;
+        typedef std::ptrdiff_t difference_type;
+        ConstMapIterator(tree<K, V> *node): MapIterator<K, V>(node){}
+        virtual ~ConstMapIterator() {}
+        ConstMapIterator(const MapIterator<K, V> &other) : MapIterator<K, V>(other) {}
+        ConstMapIterator() :MapIterator<K, V>(){}
+        const_pointer operator->() {
+            return (&value_type(this->ptr_node->key, this->ptr_node->vallue));
+        }
+        const_reference operator*() {
+            return (value_type(this->ptr_node->key, this->ptr_node->vallue));
+        }
+    };
 }
+
 #endif //ITERATOR_HPP

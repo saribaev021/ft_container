@@ -131,6 +131,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named hello
+
+# Build rule for target.
+hello: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 hello
+.PHONY : hello
+
+# fast build rule for target.
+hello/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hello.dir/build.make CMakeFiles/hello.dir/build
+.PHONY : hello/fast
+
+#=============================================================================
 # Target rules for targets named Test
 
 # Build rule for target.
@@ -142,6 +155,19 @@ Test: cmake_check_build_system
 Test/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Test.dir/build.make CMakeFiles/Test.dir/build
 .PHONY : Test/fast
+
+#=============================================================================
+# Target rules for targets named map
+
+# Build rule for target.
+map: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 map
+.PHONY : map
+
+# fast build rule for target.
+map/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/map.dir/build.make CMakeFiles/map.dir/build
+.PHONY : map/fast
 
 #=============================================================================
 # Target rules for targets named vector
@@ -209,6 +235,33 @@ List/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/list.dir/build.make CMakeFiles/list.dir/List/main.cpp.s
 .PHONY : List/main.cpp.s
 
+Map/main.o: Map/main.cpp.o
+
+.PHONY : Map/main.o
+
+# target to build an object file
+Map/main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/map.dir/build.make CMakeFiles/map.dir/Map/main.cpp.o
+.PHONY : Map/main.cpp.o
+
+Map/main.i: Map/main.cpp.i
+
+.PHONY : Map/main.i
+
+# target to preprocess a source file
+Map/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/map.dir/build.make CMakeFiles/map.dir/Map/main.cpp.i
+.PHONY : Map/main.cpp.i
+
+Map/main.s: Map/main.cpp.s
+
+.PHONY : Map/main.s
+
+# target to generate assembly for a file
+Map/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/map.dir/build.make CMakeFiles/map.dir/Map/main.cpp.s
+.PHONY : Map/main.cpp.s
+
 Stack/main.o: Stack/main.cpp.o
 
 .PHONY : Stack/main.o
@@ -263,32 +316,35 @@ Test/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Test.dir/build.make CMakeFiles/Test.dir/Test/main.cpp.s
 .PHONY : Test/main.cpp.s
 
-vector/main.o: vector/main.cpp.o
+Vector/main.o: Vector/main.cpp.o
 
-.PHONY : vector/main.o
+.PHONY : Vector/main.o
 
 # target to build an object file
-vector/main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/vector.dir/build.make CMakeFiles/vector.dir/vector/main.cpp.o
-.PHONY : vector/main.cpp.o
+Vector/main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hello.dir/build.make CMakeFiles/hello.dir/Vector/main.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vector.dir/build.make CMakeFiles/vector.dir/Vector/main.cpp.o
+.PHONY : Vector/main.cpp.o
 
-vector/main.i: vector/main.cpp.i
+Vector/main.i: Vector/main.cpp.i
 
-.PHONY : vector/main.i
+.PHONY : Vector/main.i
 
 # target to preprocess a source file
-vector/main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/vector.dir/build.make CMakeFiles/vector.dir/vector/main.cpp.i
-.PHONY : vector/main.cpp.i
+Vector/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hello.dir/build.make CMakeFiles/hello.dir/Vector/main.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vector.dir/build.make CMakeFiles/vector.dir/Vector/main.cpp.i
+.PHONY : Vector/main.cpp.i
 
-vector/main.s: vector/main.cpp.s
+Vector/main.s: Vector/main.cpp.s
 
-.PHONY : vector/main.s
+.PHONY : Vector/main.s
 
 # target to generate assembly for a file
-vector/main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/vector.dir/build.make CMakeFiles/vector.dir/vector/main.cpp.s
-.PHONY : vector/main.cpp.s
+Vector/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hello.dir/build.make CMakeFiles/hello.dir/Vector/main.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/vector.dir/build.make CMakeFiles/vector.dir/Vector/main.cpp.s
+.PHONY : Vector/main.cpp.s
 
 # Help Target
 help:
@@ -299,21 +355,26 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... Test"
+	@echo "... hello"
 	@echo "... list"
+	@echo "... map"
 	@echo "... stack"
 	@echo "... vector"
 	@echo "... List/main.o"
 	@echo "... List/main.i"
 	@echo "... List/main.s"
+	@echo "... Map/main.o"
+	@echo "... Map/main.i"
+	@echo "... Map/main.s"
 	@echo "... Stack/main.o"
 	@echo "... Stack/main.i"
 	@echo "... Stack/main.s"
 	@echo "... Test/main.o"
 	@echo "... Test/main.i"
 	@echo "... Test/main.s"
-	@echo "... vector/main.o"
-	@echo "... vector/main.i"
-	@echo "... vector/main.s"
+	@echo "... Vector/main.o"
+	@echo "... Vector/main.i"
+	@echo "... Vector/main.s"
 .PHONY : help
 
 

@@ -824,8 +824,8 @@ void insert_single_element()
     f_v.push_back(23);
     // SitInt s_it = s_v.begin();
     // itInt f_it =  f_v.begin();
-    SitInt s_it =  s_v.insert(s_v.begin() + 4, 54);
-    itInt f_it =  f_v.insert(f_v.begin() + 4, 54);
+    SitInt s_it =  s_v.insert(s_v.end(), 54);
+    itInt f_it =  f_v.insert(f_v.end(), 54);
     std::cout << MAGENTA << "*s_it = "<<RESET;
     for (; s_it != s_v.end(); ++s_it)
     {
@@ -856,22 +856,53 @@ void insert_single_element()
         std::cout << f_v[i]<<" ";
     }
     std::cout << std::endl;
-    std::cout << BLUE << "         SINGLE ELEMENT INSERT"<<RESET<<std::endl;
+
+}
+void insert_fill(){
+    std::cout << BLUE << "         FILL INSERT"<<RESET<<std::endl;
+    std::string tab("qwertyuiopasdfghjklzxcvbnm1234567890");
     std::cout <<MAGENTA <<"std::vector<std::string>s_v_fill"<<RESET <<std::endl;
     std::cout <<CYAN <<"ft:vector<std::string>f_v_fill"<<RESET <<std::endl;
     std::vector<std::string>s_v_fill;
+    std::vector<std::string>s_v;
     ft::vector<std::string>f_v_fill;
+    ft::vector<std::string>f_v;
     for (int i = 0; i != 10; ++i)
     {
         std::string s1;
         for (int k = 0; k != 10; ++k)
         {
-            s1.push_back(rand() % 122 - 'a');
+            s1.push_back(tab[rand() % tab.length()]);
         }
-        s_v_fill.push_back(s1);
-        f_v_fill.push_back(s1);
+        s_v.push_back(s1);
+        f_v.push_back(s1);
     }
-    s_v_fill.insert()
+    std::cout << MAGENTA << "s_v[i] = "<<RESET;
+    for (std::vector<int>::size_type i = 0; i!= s_v.size(); ++i)
+    {
+        std::cout << s_v[i]<<" ";
+    }
+    std::cout << std::endl;
+    std::cout << CYAN << "f_v[i] = "<<RESET;
+    for (std::vector<int>::size_type i = 0; i!= f_v.size(); ++i)
+    {
+        std::cout << f_v[i]<<" ";
+    }
+    std::cout << std::endl;
+    std::cout << MAGENTA << "s_v_fill.insert(s_v.begin(), 5, s_v.front())" << RESET<<std::endl;
+    std::cout << CYAN  << "f_v_fill.insert(f_v.begin(), 5, f_v.front())" << RESET<<std::endl;
+    s_v_fill.assign(10, "qwert");
+    f_v_fill.assign(10, "qwert");
+    s_v_fill.push_back("aaaa");
+    f_v_fill.push_back("aaaa");
+    s_v_fill.insert(s_v_fill.begin() + 5, 5, f_v.front());
+    f_v_fill.insert(f_v_fill.begin() + 5, 5, f_v.front());
+    std::cout << MAGENTA << "s_v_fill.size() = " << RESET<<s_v_fill.size()<<std::endl;
+    std::cout << CYAN  << "f_v_fill.size() = " << RESET<<f_v_fill.size()<<std::endl;
+    std::cout << MAGENTA << "s_v_fill.max_size() = " << RESET<<s_v_fill.max_size()<<std::endl;
+    std::cout << CYAN  << "f_v_fill.max_size() = " << RESET<<f_v_fill.max_size()<<std::endl;
+    std::cout << MAGENTA << "s_v_fill.capacity() = " << RESET<<s_v_fill.capacity()<<std::endl;
+    std::cout << CYAN  << "f_v_fill.capacity() = " << RESET<<f_v_fill.capacity()<<std::endl;
     std::cout << MAGENTA << "s_v_fill[i] = "<<RESET;
     for (std::vector<int>::size_type i = 0; i!= s_v_fill.size(); ++i)
     {
@@ -884,22 +915,291 @@ void insert_single_element()
         std::cout << f_v_fill[i]<<" ";
     }
     std::cout << std::endl;
-    std::cout << MAGENTA << "s_v_fill.insert(s_v.begin(), 54)" << RESET<<std::endl;
-    std::cout << CYAN  << "f_v_fill.insert(f_v.begin(), 54)" << RESET<<std::endl;
 }
-void insert_fill(){
-
+void insert_range(){
+    std::cout << BLUE << "         RANGE INSERT"<<RESET<<std::endl;
+    std::string tab("qwertyuiopasdfghjklzxcvbnm1234567890");
+    std::cout <<MAGENTA <<"std::vector<std::string>s_v_range"<<RESET <<std::endl;
+    std::cout <<CYAN <<"ft:vector<std::string>f_v_range"<<RESET <<std::endl;
+    std::vector<std::string>s_v_range;
+    std::vector<std::string>s_v;
+    ft::vector<std::string>f_v_range;
+    ft::vector<std::string>f_v;
+    for (int i = 0; i != 10; ++i)
+    {
+        std::string s1;
+        for (int k = 0; k != 10; ++k)
+        {
+            s1.push_back(tab[rand() % tab.length()]);
+        }
+        s_v.push_back(s1);
+        f_v.push_back(s1);
+    }
+    std::cout << MAGENTA << "s_v[i] = "<<RESET;
+    for (std::vector<int>::size_type i = 0; i!= s_v.size(); ++i)
+    {
+        std::cout << s_v[i]<<" ";
+    }
+    std::cout << std::endl;
+    std::cout << CYAN << "f_v[i] = "<<RESET;
+    for (std::vector<int>::size_type i = 0; i!= f_v.size(); ++i)
+    {
+        std::cout << f_v[i]<<" ";
+    }
+    std::cout << std::endl;
+    std::cout << MAGENTA << "s_v_range.insert(s_v.begin() + 5, s_v.begin(), s_v.end())" << RESET<<std::endl;
+    std::cout << CYAN  << "f_v_range.insert(f_v.begin() + 5, f_v.begin(), f_v.end())" << RESET<<std::endl;
+//    s_v_range.assign(10, "qwert");
+//    f_v_range.assign(10, "qwert");
+//    s_v_range.push_back("aaaa");
+//    f_v_range.push_back("aaaa");
+    s_v_range.insert(s_v_range.begin(), s_v.begin(), s_v.end());
+    f_v_range.insert(f_v_range.begin(),  f_v.begin(), f_v.end());
+    std::cout << MAGENTA << "s_v_range.size() = " << RESET<<s_v_range.size()<<std::endl;
+    std::cout << CYAN  << "f_v_range.size() = " << RESET<<f_v_range.size()<<std::endl;
+    std::cout << MAGENTA << "s_v_range.max_size() = " << RESET<<s_v_range.max_size()<<std::endl;
+    std::cout << CYAN  << "f_v_range.max_size() = " << RESET<<f_v_range.max_size()<<std::endl;
+    std::cout << MAGENTA << "s_v_range.capacity() = " << RESET<<s_v_range.capacity()<<std::endl;
+    std::cout << CYAN  << "f_v_range.capacity() = " << RESET<<f_v_range.capacity()<<std::endl;
+    std::cout << MAGENTA << "s_v_range[i] = "<<RESET;
+    for (std::vector<int>::size_type i = 0; i!= s_v_range.size(); ++i)
+    {
+        std::cout << s_v_range[i]<<" ";
+    }
+    std::cout << std::endl;
+    std::cout << CYAN << "f_v_range[i] = "<<RESET;
+    for (std::vector<int>::size_type i = 0; i!= f_v_range.size(); ++i)
+    {
+        std::cout << f_v_range[i]<<" ";
+    }
+    std::cout << std::endl;
+}
+void erase(){
+    std::cout << BLUE << "         ERASE"<<RESET<<std::endl;
+    std::string tab("qwertyuiopasdfghjklzxcvbnm1234567890");
+    std::cout <<MAGENTA <<"std::vector<std::string>s_v"<<RESET <<std::endl;
+    std::cout <<CYAN <<"ft:vector<std::string>f_v"<<RESET <<std::endl;
+    std::vector<std::string>s_v;
+    ft::vector<std::string>f_v;
+    for (int i = 0; i != 10; ++i)
+    {
+        std::string s1;
+        for (int k = 0; k != 10; ++k)
+        {
+            s1.push_back(tab[rand() % tab.length()]);
+        }
+        s_v.push_back(s1);
+        f_v.push_back(s1);
+    }
+    std::cout << MAGENTA << "s_v[i] = "<<RESET;
+    for (std::vector<int>::size_type i = 0; i!= s_v.size(); ++i)
+    {
+        std::cout << s_v[i]<<" ";
+    }
+    std::cout << std::endl;
+    std::cout << CYAN << "f_v[i] = "<<RESET;
+    for (std::vector<int>::size_type i = 0; i!= f_v.size(); ++i)
+    {
+        std::cout << f_v[i]<<" ";
+    }
+    std::cout << std::endl;
+    std::cout <<MAGENTA <<"s_v.erase(s_v.begin() + 4)"<<RESET <<std::endl;
+    std::cout <<CYAN <<"f_v.erase(f_v.begin() + 4)"<<RESET <<std::endl;
+    SitStr s_it = s_v.begin() + 4;
+    itStr f_it = f_v.begin() + 4;
+    std::cout << MAGENTA << "*s_it = "<<RESET << *s_it <<std::endl;
+    std::cout << CYAN << "*f_it = "<<RESET<< *f_it <<std::endl;
+    s_it = s_v.erase(s_v.begin() + 4);
+    f_it = f_v.erase(f_v.begin() + 4);
+    std::cout << MAGENTA << "*s_it = "<<RESET;
+    for (; s_it != s_v.end();++s_it)
+    {
+        std::cout << *s_it<<" ";
+    }
+    std::cout << std::endl;
+    std::cout << CYAN << "*f_it = "<<RESET;
+    for (; f_it != f_v.end();++f_it)
+    {
+        std::cout << *f_it<<" ";
+    }
+    std::cout << std::endl;
+    std::cout << MAGENTA << "s_v[i] = "<<RESET;
+    for (std::vector<int>::size_type i = 0; i!= s_v.size(); ++i)
+    {
+        std::cout << s_v[i]<<" ";
+    }
+    std::cout << std::endl;
+    std::cout << CYAN << "f_v[i] = "<<RESET;
+    for (std::vector<int>::size_type i = 0; i!= f_v.size(); ++i)
+    {
+        std::cout << f_v[i]<<" ";
+    }
+    std::cout << std::endl;
+}
+void erase_range(){
+    std::cout << BLUE << "         ERASE RANGE"<<RESET<<std::endl;
+    std::string tab("qwertyuiopasdfghjklzxcvbnm1234567890");
+    std::cout <<MAGENTA <<"std::vector<std::string>s_v"<<RESET <<std::endl;
+    std::cout <<CYAN <<"ft:vector<std::string>f_v"<<RESET <<std::endl;
+    std::vector<std::string>s_v;
+    ft::vector<std::string>f_v;
+    for (int i = 0; i != 10; ++i)
+    {
+        std::string s1;
+        for (int k = 0; k != 10; ++k)
+        {
+            s1.push_back(tab[rand() % tab.length()]);
+        }
+        s_v.push_back(s1);
+        f_v.push_back(s1);
+    }
+    std::cout << MAGENTA << "s_v[i] = "<<RESET;
+    for (std::vector<int>::size_type i = 0; i!= s_v.size(); ++i)
+    {
+        std::cout << s_v[i]<<" ";
+    }
+    std::cout << std::endl;
+    std::cout << CYAN << "f_v[i] = "<<RESET;
+    for (std::vector<int>::size_type i = 0; i!= f_v.size(); ++i)
+    {
+        std::cout << f_v[i]<<" ";
+    }
+    std::cout << std::endl;
+    std::cout <<MAGENTA <<"s_v.erase(s_v.begin(), s_v.end())"<<RESET <<std::endl;
+    std::cout <<CYAN <<"f_v.erase(f_v.begin(), f_v.end())"<<RESET <<std::endl;
+    SitStr s_it = s_v.begin();
+    itStr f_it = f_v.begin();
+    std::cout << MAGENTA << "*s_it = "<<RESET << *s_it <<std::endl;
+    std::cout << CYAN << "*f_it = "<<RESET<< *f_it <<std::endl;
+    s_it = s_v.erase(s_v.begin(), s_v.end());
+    f_it = f_v.erase(f_v.begin(), f_v.end());
+    std::cout << MAGENTA << "*s_it = "<<RESET;
+    for (; s_it != s_v.end();++s_it)
+    {
+        std::cout << *s_it<<" ";
+    }
+    std::cout << std::endl;
+    std::cout << CYAN << "*f_it = "<<RESET;
+    for (; f_it != f_v.end();++f_it)
+    {
+        std::cout << *f_it<<" ";
+    }
+    std::cout << std::endl;
+    std::cout << MAGENTA << "s_v[i] = "<<RESET;
+    for (std::vector<int>::size_type i = 0; i!= s_v.size(); ++i)
+    {
+        std::cout << s_v[i]<<" ";
+    }
+    std::cout << std::endl;
+    std::cout << CYAN << "f_v[i] = "<<RESET;
+    for (std::vector<int>::size_type i = 0; i!= f_v.size(); ++i)
+    {
+        std::cout << f_v[i]<<" ";
+    }
+    std::cout << std::endl;
+}
+void swap(){
+    std::cout << BLUE << "       SWAP"<<RESET<<std::endl;
+    ft::vector<int> s_v (3,100);   // three ints with a value of 100
+    ft::vector<int> s_v2 (3,400);   // three ints with a value of 100
+    ft::vector<int> f_v (2,200);
+    ft::vector<int> f_v2 (2,100);
+//    std::cout << MAGENTA << "s_v[i] = "<<RESET;
+//    for (std::vector<int>::size_type i = 0; i!= s_v.size(); ++i)
+//    {
+//        std::cout << s_v[i]<<" ";
+//    }
+//    std::cout << std::endl;
+//    std::cout << MAGENTA << "s_v2[i] = "<<RESET;
+//    for (std::vector<int>::size_type i = 0; i!= s_v2.size(); ++i)
+//    {
+//        std::cout << s_v2[i]<<" ";
+//    }
+//    std::cout << std::endl;
+    std::cout << CYAN << "f_v[i] = "<<RESET;
+    for (std::vector<int>::size_type i = 0; i!= f_v.size(); ++i)
+    {
+        std::cout << f_v[i]<<" ";
+    }
+    std::cout << std::endl;
+    std::cout << CYAN << "f_v2[i] = "<<RESET;
+    for (std::vector<int>::size_type i = 0; i!= f_v2.size(); ++i)
+    {
+        std::cout << f_v2[i]<<" ";
+    }
+    std::cout << std::endl;
+//    s_v.swap(s_v2);
+    f_v.swap(f_v2);
+//    std::cout << MAGENTA << "s_v.swap(s_v2)"<<RESET<<std::endl;
+    std::cout << CYAN << "f_v.swap(f_v2)"<<RESET<<std::endl;
+//    std::cout << MAGENTA << "s_v[i] = "<<RESET;
+//    for (std::vector<int>::size_type i = 0; i!= s_v.size(); ++i)
+//    {
+//        std::cout << s_v[i]<<" ";
+//    }
+//    std::cout << std::endl;
+//    std::cout << MAGENTA << "s_v2[i] = "<<RESET;
+//    for (std::vector<int>::size_type i = 0; i!= s_v2.size(); ++i)
+//    {
+//        std::cout << s_v2[i]<<" ";
+//    }
+//    std::cout << std::endl;
+    std::cout << CYAN << "f_v[i] = "<<RESET;
+    for (std::vector<int>::size_type i = 0; i!= f_v.size(); ++i)
+    {
+        std::cout << f_v[i]<<" ";
+    }
+    std::cout << std::endl;
+    std::cout << CYAN << "f_v2[i] = "<<RESET;
+    for (std::vector<int>::size_type i = 0; i!= f_v2.size(); ++i)
+    {
+        std::cout << f_v2[i]<<" ";
+    }
+    std::cout << std::endl;
+    std::cout << CYAN << "ft::swap(f_v, f_v2)"<<RESET<<std::endl;
+    ft::swap(f_v, f_v2);
+    std::cout << CYAN << "f_v[i] = "<<RESET;
+    for (std::vector<int>::size_type i = 0; i!= f_v.size(); ++i)
+    {
+        std::cout << f_v[i]<<" ";
+    }
+    std::cout << std::endl;
+    std::cout << CYAN << "f_v2[i] = "<<RESET;
+    for (std::vector<int>::size_type i = 0; i!= f_v2.size(); ++i)
+    {
+        std::cout << f_v2[i]<<" ";
+    }
+    std::cout << std::endl;
+}
+void relational_operators(){
+    std::cout << BLUE << "     RELATION OPERATORS"<<RESET<<std::endl;
+    ft::vector<int> foo (3,100);   // three ints with a value of 100
+    ft::vector<int> bar (2,200);   // two ints with a value of 200
+    if (foo==bar) std::cout << "foo and bar are equal\n";
+    if (foo!=bar) std::cout << "foo and bar are not equal\n";
+    if (foo< bar) std::cout << "foo is less than bar\n";
+    if (foo> bar) std::cout << "foo is greater than bar\n";
+    if (foo<=bar) std::cout << "foo is less than or equal to bar\n";
+    if (foo>=bar) std::cout << "foo is greater than or equal to bar\n";
 }
 int main()
 {
+    std::string tab("qwertyuiopasdfghjklzxcvbnm1234567890");
+
     srand(time(nullptr));
-    // construtor();
-    // assign_operator();
-    // iterators();
-    // revese_iterators();
-    // const_iterator();
-    // capacity();
-    // element_access();
+     construtor();
+     assign_operator();
+     iterators();
+     revese_iterators();
+     const_iterator();
+     capacity();
+     element_access();
     insert_single_element();
+    insert_fill();
+    insert_range();
+    erase();
+    erase_range();
+    swap();
+    relational_operators();
     return 0;
 }
