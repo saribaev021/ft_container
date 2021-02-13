@@ -7,6 +7,10 @@
 #include <iostream>
 #include "../List/Node.hpp"
 #include "../Map/Tree.hpp"
+# define RESET   "\033[0m"
+# define BLACK   "\033[30m"
+# define RED     "\033[31m"
+# define GREEN   "\033[32m"
 namespace ft{
     struct iterator_tag{};
     template<typename T>
@@ -315,40 +319,42 @@ namespace ft{
         MapIterator operator++(int)//postfix i++
         {
             MapIterator tmp = *this;
-            if (ptr_node->right->type) {
-                if (ptr_node->right->left->type && ptr_node->right->left->key > ptr_node->key) {
-                    ptr_node = ptr_node->right;
-                    while (ptr_node->left->type)
-                        ptr_node = ptr_node->left;
-                }else
-                    ptr_node = this->ptr_node->right;
-            }
-            else if (ptr_node->parent->type && ptr_node->parent->key > ptr_node->key)
-                ptr_node = this->ptr_node->parent;
-            else if (ptr_node->parent->key < ptr_node->key){
-                while (ptr_node->parent->type && ptr_node->parent->key < ptr_node->key)
-                    ptr_node = ptr_node->parent;
-            }
-            return (tmp);
+			if (ptr_node->right->type) {
+				if (ptr_node->right->type == 1 && ptr_node->right->left->type == 1 && ptr_node->right->left->key > ptr_node->key) {
+					ptr_node = ptr_node->right;
+					while (ptr_node->left->type)
+						ptr_node = ptr_node->left;
+				}else
+					ptr_node = this->ptr_node->right;
+			}
+			else if (ptr_node->parent->type && ptr_node->parent->key > ptr_node->key)
+				ptr_node = this->ptr_node->parent;
+			else if (ptr_node->parent->key < ptr_node->key){
+				while (ptr_node->parent->type && ptr_node->parent->key < ptr_node->key)
+					ptr_node = ptr_node->parent;
+				ptr_node = ptr_node->parent;
+			}
+			return (tmp);
         }
         MapIterator &operator--(int)//postfix i--
         {
             MapIterator tmp = *this;
-            if (ptr_node->left->type){
-                if (ptr_node->left->right->type && ptr_node->left->right->key < ptr_node->key) {
-                    ptr_node = ptr_node->left;
-                    while (ptr_node->right->type)
-                        ptr_node = ptr_node->right;
-                } else
-                    ptr_node = this->ptr_node->left;
-            }
-            else if (ptr_node->parent->type && ptr_node->parent->key < ptr_node->key)
-                ptr_node = this->ptr_node->parent;
-            else if (ptr_node->parent->key > ptr_node->key) {
-                while (ptr_node->parent->type && ptr_node->parent->key > ptr_node->key)
-                    ptr_node = ptr_node->parent;
-            }
-            return (tmp);
+			if (ptr_node->left->type){
+				if (ptr_node->left->right->type && ptr_node->left->right->key < ptr_node->key) {
+					ptr_node = ptr_node->left;
+					while (ptr_node->right->type)
+						ptr_node = ptr_node->right;
+				} else
+					ptr_node = this->ptr_node->left;
+			}
+			else if (ptr_node->parent->type && ptr_node->parent->key < ptr_node->key)
+				ptr_node = this->ptr_node->parent;
+			else if (ptr_node->parent->key > ptr_node->key) {
+				while (ptr_node->parent->type && ptr_node->parent->key > ptr_node->key)
+					ptr_node = ptr_node->parent;
+				ptr_node = ptr_node->parent;
+			}
+			return (tmp);
         }
         MapIterator &operator++()//prefix ++i
         {
@@ -365,6 +371,7 @@ namespace ft{
             else if (ptr_node->parent->key < ptr_node->key){
                 while (ptr_node->parent->type && ptr_node->parent->key < ptr_node->key)
                     ptr_node = ptr_node->parent;
+                ptr_node = ptr_node->parent;
             }
             return (*this);
         }
@@ -383,6 +390,8 @@ namespace ft{
             else if (ptr_node->parent->key > ptr_node->key) {
                 while (ptr_node->parent->type && ptr_node->parent->key > ptr_node->key)
                     ptr_node = ptr_node->parent;
+                if (ptr_node->right->type != 2 && ptr_node->left->type != 2)
+				ptr_node = ptr_node->parent;
             }
             return (*this);
         }
@@ -416,6 +425,10 @@ namespace ft{
         reference operator*() {
             this->p.first = this->ptr_node->key;
             this->p.second = this->ptr_node->vallue;
+            if (this->ptr_node->color == 1)
+            	std::cout << GREEN;
+			if (this->ptr_node->color == 0)
+				std::cout << RED;
             return this->p;
         }
     };

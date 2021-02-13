@@ -50,7 +50,7 @@ namespace ft{
             _null_leaf = new node();
             _head = _root;
             _end = _root;
-            _root->type = 0;
+            _root->type = 3;
             _null_leaf->type = 0;
             _null_leaf->color = 1;
             _root->left = _null_leaf;
@@ -81,7 +81,7 @@ namespace ft{
             node *pivot = n->right;
 
             pivot->parent = n->parent; /* при этом, возможно, pivot становится корнем дерева */
-            if (n->parent->type == 1) {
+            if (n->parent->type == 1 || n->parent->type == 3) {
                 if (n->parent->left==n)
                     n->parent->left = pivot;
                 else
@@ -98,7 +98,7 @@ namespace ft{
             node *pivot = n->left;
 
             pivot->parent = n->parent; /* при этом, возможно, pivot становится корнем дерева */
-            if (n->parent->type == 1) {
+            if (n->parent->type == 1 || n->parent->type == 3) {
                 if (n->parent->left==n)
                     n->parent->left = pivot;
                 else
@@ -107,13 +107,12 @@ namespace ft{
             n->left = pivot->right;
             if (pivot->right->type == 1)
                 pivot->right->parent = n;
-            n->parent->right = pivot;
             n->parent = pivot;
             pivot->right = n;
         }
         void insert_case1(node *n)
         {
-            if (n->parent->type == 0)
+            if (n->parent->type == 3)
                 n->color = 1;
             else
                 insert_case2(n);
@@ -206,12 +205,12 @@ namespace ft{
                 _head->color = 1;
                 _head->parent = n;
                 _end->parent = n;
-                _head->left = nullptr;
-                _head->right = nullptr;
+                _head->left = _null_leaf;
+                _head->right = _null_leaf;
                 _end->color = 1;
                 _end->type = 2;
-                _end->left = nullptr;
-                _end->right = nullptr;
+                _end->left = _null_leaf;
+                _end->right = _null_leaf;
                 n->left = _head;
                 n->right = _end;
                 n->color = 1;
