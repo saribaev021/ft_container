@@ -1,0 +1,116 @@
+        void case_one_l(node *n){
+        	if (n->left->right->type == 1){
+        		rotate_left(n->left);
+        		rotate_right(n);
+        		n->color = 1;
+        		n->parent->left->color = 1;
+        	}
+        	else if (n->left->left->type == 1){
+        		rotate_right(n);
+				n->color = 1;
+				n->parent->left->color = 1;
+        	}
+        	else{
+				n->color = 1;
+				n->left->color = 0;
+        	}
+        }
+		void case_one_r(node *n){
+			if (n->right->left->type == 1){
+				rotate_right(n->right);
+				rotate_left(n);
+				n->color = 1;
+				n->parent->right->color = 1;
+			}
+			else if (n->right->right->type == 1){
+				rotate_left(n);
+				n->color = 1;
+				n->parent->right->color = 1;
+			}
+			else{
+				n->color = 1;
+				n->right->color = 0;
+			}
+		}
+		void case_two_l(node *n){
+			if (n->left->color == 0){
+					rotate_right(n);
+					n->parent->color = 1;
+					n->color = 0;
+					if (n->left->left->type == 1 || n->left->right->type == 1){
+						if ( n->left->right->type == 1){
+							rotate_left(n->left);
+						}
+						rotate_right(n);
+						n->color = 1;
+						n->parent->color = 0;
+						n->parent->left->color = 1;
+					}else{
+						n->color = 1;
+						n->left->color = 0;
+					}
+			} else if (n->left->color == 1){
+				if (n->left->right->type == 1){
+					rotate_left(n->left);
+				}
+			}
+		}
+		void case_two_r(node *n){
+			if (n->right->color == 0){
+				rotate_left(n);
+				n->parent->color = 1;
+				n->color = 0;
+				if (n->right->right->type == 1 || n->right->left->type == 1){
+					if ( n->right->left->type == 1){
+						rotate_right(n->right);
+					}
+					rotate_left(n);
+					n->color = 1;
+					n->parent->color = 0;
+					n->parent->right->color = 1;
+				}else{
+					n->color = 1;
+					n->right->color = 0;
+				}
+			}
+		}
+        void jopa(node *n){
+			node *parent = n->parent;
+			if (parent->color == 0){
+				if (n == parent->right)
+					case_one_l(parent);
+				else
+					case_one_r(parent);
+			}
+			else if (parent->color == 1){
+				if (n == parent->right)
+					case_two_l(parent);
+				else
+					case_two_r(parent);
+			}
+			delete_node(n);
+		}
+        void delete_node(node *n){
+			node *parent = n->parent;
+			if (parent->right == n)
+				parent->right = _null_leaf;
+			else
+				parent->left = _null_leaf;
+			delete n;
+        }
+		void delete_one(node *n){
+			node *parent = n->parent;
+			if (parent->type == 3){
+				delete _end;
+				delete _head;
+				_end = parent;
+				_head = parent;
+			}
+			else if (n->color == 0){
+				delete_node(n);
+			}
+			else{
+				jopa(n);
+			}
+
+		}

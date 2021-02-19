@@ -13,6 +13,7 @@ typedef  std::vector<int>::iterator intIt;
 int main(){
     srand(time(nullptr));
     std::map<int, int>a;
+//    std::map<int, int>::value_compare
 ////    std::list<int>::iterator it = a.begin();
 //    std::map<int, int>::iterator::value_type v;
 //    v = *a.begin();
@@ -26,4 +27,20 @@ int main(){
 ////    }
 ////    std::cout << std::endl;
 ////    std::cout << a.begin()->first << " "<<a.begin()->second<<std::endl;
+	std::vector<int>df;
+	df.push_back(250);
+	df.push_back(213);
+	df.push_back(212);
+	df.push_back(211);
+	df.push_back(210);
+	df.push_back(60);
+	df.push_back(50);
+	std::map<int, std::string>das;
+	for (int i = 0; i != 6; ++i){
+		das.insert(std::pair<int, std::string>(df[i],"sfds"));
+	}
+	std::map<int,std::string>::iterator it = das.upper_bound(50);
+	std::cout << it->first<<std::endl;
+	if (it == das.end())
+		std::cout << "true"<<std::endl;
 }

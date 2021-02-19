@@ -7,11 +7,18 @@
 #include <iostream>
 #include "../List/Node.hpp"
 #include "../Map/Tree.hpp"
+//#include "../Map/map.hpp"
 # define RESET   "\033[0m"
 # define BLACK   "\033[30m"
 # define RED     "\033[31m"
 # define GREEN   "\033[32m"
+
 namespace ft{
+	template < class Key,                                  //   map::key_type
+			class T,                                       // map::mapped_type
+			class Compare,                     // map::key_compare
+			class Alloc>    // map::allocator_type
+	class map;
     struct iterator_tag{};
     template<typename T>
     class ListIterator {
@@ -302,7 +309,8 @@ namespace ft{
         typedef value_type *pointer;
         typedef value_type &reference;
         typedef std::ptrdiff_t difference_type;
-    protected:
+//		friend map;
+	protected:
         tree<K, V> *ptr_node;
         std::pair<K, V>p;
     public:
@@ -401,19 +409,34 @@ namespace ft{
             return (false);
         }
         bool operator==(const  MapIterator &other) const {
-            if (this->ptr_node == other.ptr_node)
-                return (true);
-            return (false);
-        }
+			if (this->ptr_node == other.ptr_node)
+				return (true);
+			return (false);
+		}
+//		template < class Key,                                  //   map::key_type
+//				class T,                                       // map::mapped_type
+//				class Compare = std::less<Key>,                     // map::key_compare
+//				class Alloc = std::allocator<std::pair<const Key,T> >    // map::allocator_type
+//		> frtclass map;
     };
     template <typename K, typename V>
     class SimpleMapIterator : public MapIterator<K, V>{
-    public:
-        typedef std::pair<K, V> value_type;
-        typedef iterator_tag iterator_category;
-        typedef value_type *pointer;
-        typedef value_type &reference;
-        typedef std::ptrdiff_t difference_type;
+	public:
+		typedef std::pair<K, V> value_type;
+		typedef iterator_tag iterator_category;
+		typedef value_type *pointer;
+		typedef value_type &reference;
+		typedef std::ptrdiff_t difference_type;
+		template < class Key,                                  //   map::key_type
+				class T,                                       // map::mapped_type
+				class Compare,                     // map::key_compare
+				class Alloc>    // map::allocator_type
+		friend class map;
+	private:
+		tree<K, V> *get_ptr(){
+			return this->ptr_node;
+		}
+	public:
         SimpleMapIterator(tree<K, V> *node): MapIterator<K, V>(node){}
         SimpleMapIterator(const value_type &val): MapIterator<K, V>(val){}
         virtual ~SimpleMapIterator() {}
@@ -425,10 +448,10 @@ namespace ft{
         reference operator*() {
             this->p.first = this->ptr_node->key;
             this->p.second = this->ptr_node->vallue;
-            if (this->ptr_node->color == 1)
-            	std::cout << GREEN;
-			if (this->ptr_node->color == 0)
-				std::cout << RED;
+//            if (this->ptr_node->color == 1)
+//            	std::cout << GREEN;
+//			if (this->ptr_node->color == 0)
+//				std::cout << RED;
             return this->p;
         }
     };

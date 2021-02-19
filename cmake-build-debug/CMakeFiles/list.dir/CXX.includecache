@@ -7,8 +7,12 @@
 #IncludeRegexTransform: 
 
 /Users/ndreadno/ft_container/Iterator/Iterator.hpp
+iostream
+-
 ../List/Node.hpp
 /Users/ndreadno/ft_container/List/Node.hpp
+../Map/Tree.hpp
+/Users/ndreadno/ft_container/Map/Tree.hpp
 
 /Users/ndreadno/ft_container/List/Node.hpp
 iostream
@@ -41,4 +45,6 @@ iterator
 -
 list.hpp
 /Users/ndreadno/ft_container/List/list.hpp
+
+/Users/ndreadno/ft_container/Map/Tree.hpp
 
